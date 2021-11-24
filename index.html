@@ -18,43 +18,43 @@
                 <div class="profile__avatar"><img class="profile__avatar-icon" src="./images/Jacques-Yves-Cousteau.jpg" alt="Аватар"></div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__edit-button profile__edit-button_type_about"></button>
+                    <button class="profile__edit-button profile__edit-button_type_about" type="submit"></button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="submit"></button>
             </section>
 
             <section class="elements">
-                <div class="element">
+                <article class="element">
                     <img class="element__image" src="./images/Karachaevsk.jpg" alt="Фото">
                     <h2 class="element__title">Карачаевск</h2>
-                    <button class="element__like"></button>
-                </div>
-                <div class="element">
+                    <button class="element__like" type="submit"></button>
+                </article>
+                <article class="element">
                     <img class="element__image" src="./images/Elbrus.png" alt="Фото">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like"></button>
-                </div>
-                <div class="element">
+                    <button class="element__like" type="submit"></button>
+                </article>
+                <article class="element">
                     <img class="element__image" src="./images/Dombay.png" alt="Фото">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__like"></button>
-                </div>
-                <div class="element">
+                    <button class="element__like" type="submit"></button>
+                </article>
+                <article class="element">
                     <img class="element__image" src="./images/Elbrus.png" alt="Фото">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__like"></button>
-                </div>
-                <div class="element">
+                    <button class="element__like" type="submit"></button>
+                </article>
+                <article class="element">
                     <img class="element__image" src="./images/Dombay.png" alt="Фото">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__like"></button>
-                </div>
-                <div class="element">
+                    <button class="element__like" type="submit"></button>
+                </article>
+                <article class="element">
                     <img class="element__image" src="./images/Karachaevsk.jpg" alt="Фото">
                     <h2 class="element__title">Карачаево-Черкесия</h2>
-                    <button class="element__like"></button>
-                </div>
+                    <button class="element__like" type="submit"></button>
+                </article>
             </section>
         </main>
 
@@ -62,16 +62,17 @@
             <p class="footer__copyright">© 2021 Mesto Russia</p>
         </footer>
     </div>
-    <section class="popup">
-        <div class="popup__overlay"></div>
-        <form class="popup__container">
-            <h2 class="popup__heading">Редактировать профиль</h2>
+    <div class="popup">
+        <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
-            <input class="popup__input popup__input_type_name" type="text" value="">
-            <input class="popup__input popup__input_type_job" type="text" value="">
+            <form name="popup">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <input class="popup__input popup__input_type_name" name="name" type="text" value="">
+            <input class="popup__input popup__input_type_job" name="job" type="text" value="">
             <button class="popup__button" type="submit">Сохранить</button>
         </form>
-    </section>
+    </div>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

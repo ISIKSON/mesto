@@ -3,7 +3,8 @@
     margin: 0 0 30px 36px;
     padding-bottom: 13px;
     border: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid;
+    border-color: rgba(0, 0, 0, .2);
     width: 358px;
     height: 27px;
     font-family: 'Inter', 'Arial', sans-serif;
