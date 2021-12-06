@@ -26,9 +26,9 @@ const initialCards = [
   ];
   const aboutLink= document.querySelector('.profile__edit-button_type_about');
   const addLink= document.querySelector('.profile__add-button_type_add');
-  const popupEdProfile=document.querySelector('.popup__edit-profile');
-  const popupAddCard=document.querySelector('.popup__add-card');
-  const popupBigImg=document.querySelector('.popup__image-opened')
+  const popupEdProfile=document.querySelector('.popup_type_edit-profile');
+  const popupAddCard=document.querySelector('.popup_type_add-card');
+  const popupBigImg=document.querySelector('.popup_type_image-big')
   const popupCloseButtonProfile= document.querySelector('.popup__close-button_type_edit-profile');
   const popupCloseButtonAdd= document.querySelector('.popup__close-button_type_add-card');
   const popupCloseButtonBig= document.querySelector('.popup__close-button_type_image');
