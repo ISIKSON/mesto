@@ -44,6 +44,12 @@
 
 @import url(../blocks/popup/popup.css);
 
+@import url(../blocks/popup/__image-opened/popup__image-opened.css);
+
+@import url(../blocks/popup/__edit-profile/popup__edit-profile.css);
+
+@import url(../blocks/popup/__add-card/popup__add-card.css);
+
 @import url(../blocks/popup/__container/popup__container.css);
 
 @import url(../blocks/popup/__img-container/popup__img-container.css);
