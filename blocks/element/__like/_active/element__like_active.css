@@ -1,0 +1,10 @@
+.element__like_active {
+    background-image:url(../../../../images/like-black.svg);
+    background-color: white;
+    width: 22px;
+    height: 19px;
+    background-repeat: no-repeat;
+    border: none;
+    margin-top: 30px;
+    margin-right: 20px;
+}
