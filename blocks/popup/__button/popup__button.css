@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+.popup__button.popup__button_disabled {
+    background-color: grey;
+  }
+
 @media screen and (max-width: 540px) {
     .popup__button {
         margin: 45px 22px 25px;
