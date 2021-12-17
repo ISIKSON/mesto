@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
+    <script src="./scripts/cards.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
     <script src="./scripts/index.js" defer></script>
     <title>Mesto Russia</title>
 </head>
@@ -36,32 +38,39 @@
     </div>
 
     <div class="popup popup_type_image-big">
-    <div class="popup__img-container">
-          <button class="popup__close-button popup__close-button_type_image" type="button"></button>
-          <img class="popup__img" src="#" alt="Картинка">
-          <h2 class="popup__subtitle"></h2>
-    </div>
+        <div class="popup__overlay"></div>
+            <div class="popup__img-container">
+            <button class="popup__close-button popup__close-button_type_image" type="button"></button>
+            <img class="popup__img" src="#" alt="Картинка">
+            <h2 class="popup__subtitle"></h2>
+        </div>
     </div>
 
     <div class="popup popup_type_edit-profile">
+        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button popup__close-button_type_edit-profile" type="button"></button>
         <form class="popup__form popup__form_type_edit-profile" name="popup-edit-profile">
             <h2 class="popup__heading">Редактировать профиль</h2>
-            <input class="popup__input popup__input_type_name" name="profile-name" type="text" placeholder="Имя" value="">
-            <input class="popup__input popup__input_type_job" name="profile-job" type="text" placeholder="Профессия" value="">
+            <input class="popup__input popup__input_type_name" id="user-name" name="profile-name" type="text" placeholder="Имя" value="" required minlength="2" maxlength="40">
+            <span id="user-name-error" class="error"></span>
+            <input class="popup__input popup__input_type_job" id="about" name="profile-job" type="text" placeholder="Профессия" value="" required minlength="2" maxlength="200">
+            <span id="about-error" class="error"></span>
             <button class="popup__button" type="submit">Сохранить</button>
         </form>
     </div>
     </div>
 
     <div class="popup popup_type_add-card">
+        <div class="popup__overlay"></div>
         <div class="popup__container">
             <button class="popup__close-button popup__close-button_type_add-card" type="button"></button>
         <form class="popup__form popup__form_type_add-card" name="popup-add-card">
             <h2 class="popup__heading">Новое место</h2>
-            <input class="popup__input popup__input_type_photo-name" name="photo-name" type="text" placeholder="Название" value="" required>
-            <input class="popup__input popup__input_type_img-link" name="img-link" type="url" placeholder="Ссылка на картинку" value="" required>
+            <input class="popup__input popup__input_type_photo-name" id="name-card" name="photo-name" type="text" placeholder="Название" value="" required minlength="2" maxlength="30">
+            <span id="name-card-error" class="error"></span>
+            <input class="popup__input popup__input_type_img-link" id="link" name="img-link" type="url" placeholder="Ссылка на картинку" value="" required>
+            <span id="link-error" class="error"></span>
             <button class="popup__button popup__button_type_add-card" type="submit">Создать</button>
         </form>
     </div>
