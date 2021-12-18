@@ -41,21 +41,24 @@ function openPopup(popup) {
 
 function openPopupProfile() {
   //Функция:открыть попап Profile
-  
-  if(nameInput.value ===''&& jobInput.value===''){
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  }
   openPopup(popupEditProfile);
 }
 
 function openPopupAddCard() {
-
   const button = popupAddCard.querySelector(".popup__button");
   button.disabled=true;
   button.classList.add("popup__button_disabled");
   openPopup(popupAddCard);
-  
+}
+
+function openPopupBigImg(name, link) {
+  //Функция:открыть попап BigImg
+  bigImgName.textContent = name;
+  bigImg.src = link;
+  bigImg.alt = link;
+  openPopup(popupBigImg);
 }
 //--------------------------------------------------------------
 function closePopup(popup) {
@@ -145,13 +148,7 @@ function createCard(element) {
   itemImage.addEventListener("click", () =>
     openPopupBigImg(element.name, element.link)
   );
-  function openPopupBigImg(name, link) {
-    //Функция:открыть попап BigImg
-    bigImgName.textContent = name;
-    bigImg.src = link;
-    bigImg.alt = link;
-    openPopup(popupBigImg);
-  }
+  
 
   return itemContainer;
 }
@@ -159,20 +156,19 @@ function createCard(element) {
 render();
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonAddNewCard.addEventListener("click", openPopupAddCard);
-popupOverlay.addEventListener("click", closePopupProfile);
 popupCloseButtonProfile.addEventListener("click", closePopupProfile);
 popupCloseButtonAdd.addEventListener("click", closePopupAddCard);
 popupCloseButtonBig.addEventListener("click", closePopupBigImg);
 popupFormEdit.addEventListener("submit", handleProfileSubmit);
 popupFormAdd.addEventListener("submit", handleAddCard);
-popupProfileOverlay.addEventListener('click', () => {
+popupProfileOverlay.addEventListener('mousedown', () => {
   closePopup(popupEditProfile);
 });
 
-popupPlaceOverlay.addEventListener('click', () => {
+popupPlaceOverlay.addEventListener('mousedown', () => {
     closePopup(popupAddCard);
 });
 
-popupPicOverlay.addEventListener('click', () => {
+popupPicOverlay.addEventListener('mousedown', () => {
   closePopup(popupBigImg);
 });

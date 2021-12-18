@@ -2,4 +2,5 @@
     background-color: black;
     margin: 0 auto;
     padding: 0;
+    min-height: 100vh;
 }
