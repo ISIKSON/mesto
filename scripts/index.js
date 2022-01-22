@@ -1,3 +1,8 @@
+import { Card } from "./Card.js";
+import { initialCards } from "./initialCards.js";
+import {openPopup,popupBigImg,escHandler,closePopup} from "./utils.js";
+import {FormValidator} from "./FormValidator.js";
+
 const buttonEditProfile = document.querySelector(
   ".profile__edit-button_type_about"
 );
@@ -88,6 +93,8 @@ initialCards.forEach((data) => {
   const ticket = createCard(data,'.template');
   cardContainer.append(ticket.getElement());
 });
+const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля
+const popupFormAdd = document.querySelector(".popup__form_type_add-card"); //form добавление карточек
 
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonAddNewCard.addEventListener("click", openPopupAddCard);
@@ -96,7 +103,7 @@ popupCloseButtonAdd.addEventListener("click", closePopupAddCard);
 popupCloseButtonBig.addEventListener("click", closePopupBigImg);
 popupFormEdit.addEventListener("submit", handleProfileSubmit);
 popupFormAdd.addEventListener("submit", handleAddCard);
-popupProfileOverlay.addEventListener('mousedown', () => {
+popupProfileOverlay.addEventListener('click', () => {
   closePopup(popupEditProfile);
 });
 
@@ -108,6 +115,14 @@ popupPicOverlay.addEventListener('mousedown', () => {
   closePopup(popupBigImg);
 });
 
+const validationConfig = {//включает валидацию на проекте
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+  };
 
 const editFormValidator = new FormValidator(popupFormEdit,validationConfig);
 const cardFormValidator = new FormValidator(popupFormAdd,validationConfig);
@@ -115,7 +130,5 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
 
-import { Card } from "./Card.js";
-import { initialCards } from "./initialCards.js";
-import {openPopup,popupBigImg,escHandler,closePopup} from "./utils.js";
-import {FormValidator,popupFormEdit,popupFormAdd,validationConfig} from "./FormValidator.js";
+
+

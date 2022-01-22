@@ -4,24 +4,35 @@ class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
-        this._cardSelector = cardSelector;
-        // console.log(cardSelector);
+        this._cardSelector = cardSelector; 
+        this._bigImgName = document.querySelector(".popup__subtitle");
+        this._bigImg = document.querySelector(".popup__img");
     }
 
     getElement() {
         this._element = this._getTemplate();
-        const itemImage = this._element.querySelector(".element__image");//присваиваем значение img
+        // const itemImage = this._element.querySelector(".element__image");//присваиваем значение img
+        // const removeBtn = this._element.querySelector(".element__delete-button");
+        // const likeElement = this._element.querySelector(".element__like");
+        this._itemImage = this._element.querySelector(".element__image");
+        this._removeBtn = this._element.querySelector(".element__delete-button");
+        this._likeElement = this._element.querySelector(".element__like");
         this._element.querySelector(".element__title").textContent = this._name;//присваиваем заголовок к h2
-        itemImage.src = this._link;//присваиваем ссылку к src
-        itemImage.alt = this._name;//присваиваем название к alt
-        itemImage.addEventListener("click", this.openPopupBigImg);
-        const removeBtn = this._element.querySelector(".element__delete-button");
-        removeBtn.addEventListener("click", this.deleteCard); //обработчик удаления карты
-        const likeElement = this._element.querySelector(".element__like");
-        likeElement.addEventListener("click", this.likeCard); //обработчик лайка
-
+        this._itemImage.src = this._link;//присваиваем ссылку к src
+        this._itemImage.alt = this._name;//присваиваем название к alt
+        this._setEventListeners();
         return this._element;
     }
+
+    _setEventListeners(){
+        
+      this._itemImage.addEventListener("click", this._openPopupBigImg);
+     
+      this._removeBtn.addEventListener("click", this._deleteCard); //обработчик удаления карты
+      
+      this._likeElement.addEventListener("click", this._likeCard); //обработчик лайка
+    }
+
 
     _getTemplate() {
         const cardElement = document
@@ -32,6 +43,7 @@ class Card {
 
         return cardElement;
     }
+   
 
     deleteCard = () => {    
         //функция удаления
@@ -48,14 +60,15 @@ class Card {
         //Функция:открыть попап BigImg
         const eventTarget = data.target;
         const element = eventTarget.closest(".element");
-        bigImgName.textContent = element.textContent;
-        bigImg.src = element.querySelector(".element__image").src;
-        bigImg.alt = element.textContent;
+        this._bigImgName.textContent = element.textContent;
+        this._bigImg.src = element.querySelector(".element__image").src;
+        this._bigImg.alt = element.textContent;
         openPopup(popupBigImg);
       }
+
+  
     }
     
-      const bigImgName = document.querySelector(".popup__subtitle");
-      const bigImg = document.querySelector(".popup__img");
+      
 
 export{Card};
