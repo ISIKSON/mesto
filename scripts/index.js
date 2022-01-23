@@ -82,6 +82,8 @@ function handleAddCard(evt) {
   closePopup(popupAddCard);
 }
 
+
+
 function createCard(data, cardSelector) {
   //функция создания карточки
   const card = new Card(data, cardSelector);

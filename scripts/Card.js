@@ -4,9 +4,8 @@ class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
-        this._cardSelector = cardSelector; 
-        this._bigImgName = document.querySelector(".popup__subtitle");
-        this._bigImg = document.querySelector(".popup__img");
+        this._cardSelector = cardSelector;
+        
     }
 
     getElement() {
@@ -14,6 +13,7 @@ class Card {
         // const itemImage = this._element.querySelector(".element__image");//присваиваем значение img
         // const removeBtn = this._element.querySelector(".element__delete-button");
         // const likeElement = this._element.querySelector(".element__like");
+        
         this._itemImage = this._element.querySelector(".element__image");
         this._removeBtn = this._element.querySelector(".element__delete-button");
         this._likeElement = this._element.querySelector(".element__like");
@@ -45,19 +45,21 @@ class Card {
     }
    
 
-    deleteCard = () => {    
+    _deleteCard = () => {    
         //функция удаления
         this._element.remove();
         this._element = '';
       }
 
-      likeCard(evt) {
+      _likeCard(evt) {
         //функция лайка
         evt.target.classList.toggle("element__like_active");
       }
 
-       openPopupBigImg (data) {
+       _openPopupBigImg (data) {
         //Функция:открыть попап BigImg
+        this._bigImgName = document.querySelector(".popup__subtitle");
+        this._bigImg = document.querySelector(".popup__img");
         const eventTarget = data.target;
         const element = eventTarget.closest(".element");
         this._bigImgName.textContent = element.textContent;
