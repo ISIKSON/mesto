@@ -1,4 +1,4 @@
-const popupBigImg = document.querySelector(".popup_type_image-big");
+// const popupBigImg = document.querySelector(".popup_type_image-big");
 
 function openPopup(popup) {
     //Функция:открыть попап
@@ -20,4 +20,4 @@ function openPopup(popup) {
     }
   }
   
-  export{openPopup,popupBigImg,closePopup,escHandler};
+  export{openPopup,closePopup,escHandler};

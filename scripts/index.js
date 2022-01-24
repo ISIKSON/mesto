@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
 import { initialCards } from "./initialCards.js";
-import {openPopup,popupBigImg,escHandler,closePopup} from "./utils.js";
+import {openPopup,escHandler,closePopup} from "./utils.js";
 import {FormValidator} from "./FormValidator.js";
 
 const buttonEditProfile = document.querySelector(
@@ -11,6 +11,7 @@ const buttonAddNewCard = document.querySelector(
 );
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddCard = document.querySelector(".popup_type_add-card");
+const popupBigImg = document.querySelector(".popup_type_image-big");
 const popupCloseButtonProfile = document.querySelector(
   ".popup__close-button_type_edit-profile"
 );
@@ -84,16 +85,19 @@ function handleAddCard(evt) {
 
 
 
-function createCard(data, cardSelector) {
+function createCard(data, cardSelector, popup) {
   //функция создания карточки
-  const card = new Card(data, cardSelector);
+  const card = new Card(data, cardSelector, popup);
+  // console.log(card);
   return card;
 };
 
 initialCards.forEach((data) => {
   //проходим по всем карточкам и создаём их в DOM
-  const ticket = createCard(data,'.template');
+  const ticket = createCard(data, '.template', popupBigImg);
+  
   cardContainer.append(ticket.getElement());
+  console.log(ticket);
 });
 const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля
 const popupFormAdd = document.querySelector(".popup__form_type_add-card"); //form добавление карточек

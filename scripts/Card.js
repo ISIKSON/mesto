@@ -1,19 +1,15 @@
-import {openPopup,popupBigImg} from"./utils.js";
+import {openPopup} from "./utils.js";
 
 class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, popup) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-        
+        this._popup = popup;
     }
 
     getElement() {
         this._element = this._getTemplate();
-        // const itemImage = this._element.querySelector(".element__image");//присваиваем значение img
-        // const removeBtn = this._element.querySelector(".element__delete-button");
-        // const likeElement = this._element.querySelector(".element__like");
-        
         this._itemImage = this._element.querySelector(".element__image");
         this._removeBtn = this._element.querySelector(".element__delete-button");
         this._likeElement = this._element.querySelector(".element__like");
@@ -21,6 +17,8 @@ class Card {
         this._itemImage.src = this._link;//присваиваем ссылку к src
         this._itemImage.alt = this._name;//присваиваем название к alt
         this._setEventListeners();
+        
+
         return this._element;
     }
 
@@ -60,12 +58,14 @@ class Card {
         //Функция:открыть попап BigImg
         this._bigImgName = document.querySelector(".popup__subtitle");
         this._bigImg = document.querySelector(".popup__img");
+        // this._popupBigImg = document.querySelector(".popup_type_image-big");
         const eventTarget = data.target;
         const element = eventTarget.closest(".element");
         this._bigImgName.textContent = element.textContent;
         this._bigImg.src = element.querySelector(".element__image").src;
         this._bigImg.alt = element.textContent;
-        openPopup(popupBigImg);
+        openPopup(this._popup);
+        // console.log(this._popup)
       }
 
   
