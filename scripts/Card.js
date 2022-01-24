@@ -54,7 +54,7 @@ class Card {
         evt.target.classList.toggle("element__like_active");
       }
 
-       _openPopupBigImg (data) {
+       _openPopupBigImg = (data) => {
         //Функция:открыть попап BigImg
         this._bigImgName = document.querySelector(".popup__subtitle");
         this._bigImg = document.querySelector(".popup__img");
