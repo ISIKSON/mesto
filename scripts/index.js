@@ -33,6 +33,8 @@ const template = document.querySelector(".template");
 const popupProfileOverlay = popupEditProfile.querySelector('.popup__overlay');
 const popupPlaceOverlay = popupAddCard.querySelector('.popup__overlay');
 const popupPicOverlay = popupBigImg.querySelector('.popup__overlay');
+const bigImgName = document.querySelector(".popup__subtitle");
+const bigImg = document.querySelector(".popup__img");
 
 function openPopupProfile() {
   //Функция:открыть попап Profile
@@ -76,31 +78,39 @@ function handleAddCard(evt) {
   evt.preventDefault();
   const inputText = photoNameInput.value;
   const inputLink = imgLinkInput.value;
-  const cardItem = createCard({ name: inputText, link: inputLink },'.template');
+  const cardItem = createCard({ name: inputText, link: inputLink },'.template', handleCardClick);
   cardContainer.prepend(cardItem.getElement());
   photoNameInput.value = "";
   imgLinkInput.value = "";
   closePopup(popupAddCard);
 }
 
+function handleCardClick(name,link) {
+  //Функция:открыть попап BigImg
 
+  bigImgName.textContent = name;
+  bigImg.src = link;
+  bigImg.alt = name;
+  openPopup(popupBigImg);
+ };
 
-function createCard(data, cardSelector, popup) {
+function createCard(data, cardSelector, handleCardClick) {
   //функция создания карточки
-  const card = new Card(data, cardSelector, popup);
-  // console.log(card);
+  const card = new Card(data, cardSelector, handleCardClick);
   return card;
 };
 
 initialCards.forEach((data) => {
   //проходим по всем карточкам и создаём их в DOM
-  const ticket = createCard(data, '.template', popupBigImg);
+  const ticket = createCard(data, '.template', handleCardClick);
   
   cardContainer.append(ticket.getElement());
-  console.log(ticket);
 });
+
+
 const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля
 const popupFormAdd = document.querySelector(".popup__form_type_add-card"); //form добавление карточек
+
 
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonAddNewCard.addEventListener("click", openPopupAddCard);

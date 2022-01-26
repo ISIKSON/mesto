@@ -1,11 +1,9 @@
-import {openPopup} from "./utils.js";
-
 class Card {
-    constructor(data, cardSelector, popup) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-        this._popup = popup;
+        this._handleCardClick = handleCardClick;
     }
 
     getElement() {
@@ -24,7 +22,7 @@ class Card {
 
     _setEventListeners(){
         
-      this._itemImage.addEventListener("click", this._openPopupBigImg);
+      this._itemImage.addEventListener("click", () => { this._handleCardClick(this._name, this._link) });
      
       this._removeBtn.addEventListener("click", this._deleteCard); //обработчик удаления карты
       
@@ -54,23 +52,6 @@ class Card {
         evt.target.classList.toggle("element__like_active");
       }
 
-       _openPopupBigImg = (data) => {
-        //Функция:открыть попап BigImg
-        this._bigImgName = document.querySelector(".popup__subtitle");
-        this._bigImg = document.querySelector(".popup__img");
-        // this._popupBigImg = document.querySelector(".popup_type_image-big");
-        const eventTarget = data.target;
-        const element = eventTarget.closest(".element");
-        this._bigImgName.textContent = element.textContent;
-        this._bigImg.src = element.querySelector(".element__image").src;
-        this._bigImg.alt = element.textContent;
-        openPopup(this._popup);
-        // console.log(this._popup)
-      }
-
-  
     }
     
-      
-
 export{Card};
