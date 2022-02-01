@@ -72,16 +72,5 @@ class FormValidator {
 
 }
 
-//     const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля
-//     const popupFormAdd = document.querySelector(".popup__form_type_add-card"); //form добавление карточек
-
-// const validationConfig = {//включает валидацию на проекте
-//     formSelector: '.popup__form',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'popup__error_visible'
-// };
 
 export{FormValidator}; 
