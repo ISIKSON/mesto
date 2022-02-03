@@ -29,7 +29,7 @@ export const validationConfig = {//включает валидацию на пр
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
+    inactiveButtonClass: 'popup__button_disabled',  
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
     };
@@ -40,8 +40,8 @@ export const validationConfig = {//включает валидацию на пр
   export const buttonAddNewCard = document.querySelector(
     ".profile__add-button_type_add"
   );
-  export  const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-  export  const popupAddCard = document.querySelector(".popup_type_add-card");
+  // export  const popupEditProfile = document.querySelector(".popup_type_edit-profile");
+  // export  const popupAddCard = document.querySelector(".popup_type_add-card");
   // export  const popupBigImg = document.querySelector(".popup_type_image-big");
   export  const popupCloseButtonProfile = document.querySelector(
     ".popup__close-button_type_edit-profile"
@@ -66,7 +66,7 @@ export const validationConfig = {//включает валидацию на пр
   // export  const popupPicOverlay = popupBigImg.querySelector('.popup__overlay');
   export  const bigImgName = document.querySelector(".popup__subtitle");
   export  const bigImg = document.querySelector(".popup__img");
-  export  const button = popupAddCard.querySelector(".popup__button");
+  export  const button = document.querySelector(".popup__button");
 
   
   export  const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля

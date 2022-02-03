@@ -2,12 +2,11 @@ import  Card  from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {initialCards, validationConfig} from "../utils/constants.js";
 import {
   buttonEditProfile,
   buttonAddNewCard,
-  popupEditProfile,
-  popupAddCard,
   popupCloseButtonProfile,
   popupCloseButtonAdd,
   popupCloseButtonBig,
@@ -56,25 +55,33 @@ import {
 //   closePopup(popupBigImg);
 // }
 
-// function handleProfileSubmit(evt) {
-//   //Функция:присвоить значения input для профиля
-//   evt.preventDefault();
-//   nameProfile.textContent = nameInput.value;
-//   jobProfile.textContent = jobInput.value;
-//   closePopup(popupEditProfile);
-// }
+const popupEditProfile = new PopupWithForm(".popup_type_edit-profile",handleProfileSubmit);
+const popupAddCard = new PopupWithForm(".popup_type_add-card",handleAddCard);
 
-// function handleAddCard(evt) {
-//   //handle-обработать какое то событие
-//   evt.preventDefault();
-//   const inputText = photoNameInput.value;
-//   const inputLink = imgLinkInput.value;
-//   const cardItem = createCard({ name: inputText, link: inputLink },'.template', handleCardClick);
-//   cardContainer.prepend(cardItem.getElement());
-//   photoNameInput.value = "";
-//   imgLinkInput.value = "";
-//   closePopup(popupAddCard);
-// }
+function handleProfileSubmit(evt) {
+  //Функция:присвоить значения input для профиля
+  evt.preventDefault();
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
+  
+}
+popupEditProfile.setEventListeners();
+
+function handleAddCard(evt) {
+  //handle-обработать какое то событие
+  evt.preventDefault();
+  const inputText = photoNameInput.value;
+  const inputLink = imgLinkInput.value;
+  const cardItem = createCard({ name: inputText, link: inputLink },'.template', handleCardClick);
+  cardContainer.prepend(cardItem.getElement());
+  photoNameInput.value = "";
+  imgLinkInput.value = "";
+  
+}
+popupAddCard.setEventListeners();
+
+buttonEditProfile.addEventListener("click", popupEditProfile.open);
+buttonAddNewCard.addEventListener("click", popupAddCard.open);
 
 const popupBigImg = new PopupWithImage(".popup_type_image-big");
 
@@ -117,13 +124,12 @@ cardsList.renderItems();
 
 
 
-// buttonEditProfile.addEventListener("click", openPopupProfile);
-// buttonAddNewCard.addEventListener("click", openPopupAddCard);
+
 // popupCloseButtonProfile.addEventListener("click", closePopupProfile);
 // popupCloseButtonAdd.addEventListener("click", closePopupAddCard);
 // popupCloseButtonBig.addEventListener("click", closePopupBigImg);
-// popupFormEdit.addEventListener("submit", handleProfileSubmit);
-// popupFormAdd.addEventListener("submit", handleAddCard);
+popupFormEdit.addEventListener("submit", popupEditProfile.close);
+popupFormAdd.addEventListener("submit", popupAddCard.close);
 // popupProfileOverlay.addEventListener('click', () => {
 //   closePopup(popupEditProfile);
 // });
