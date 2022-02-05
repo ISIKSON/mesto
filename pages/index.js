@@ -3,6 +3,7 @@ import {FormValidator} from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js"
 import {initialCards, validationConfig} from "../utils/constants.js";
 import {
   buttonEditProfile,
@@ -25,45 +26,23 @@ import {
   popupFormEdit,
   popupFormAdd} from "../utils/constants.js";
 
+const userInfo = new UserInfo({nameEl:nameProfile, jobEl:jobProfile});
 
-// function openPopupProfile() {
-//   //Функция:открыть попап Profile
-//   nameInput.value = nameProfile.textContent;
-//   jobInput.value = jobProfile.textContent;
-//   openPopup(popupEditProfile);
-// }
+const popupEditProfile = new PopupWithForm(".popup_type_edit-profile",
+()=>{
+  userInfo.setUserInfo(nameInput.value,jobInput.value);  
+  popupEditProfile.close();
+});
 
-// function openPopupAddCard() {
-  
-//   button.disabled=true;
-//   button.classList.add("popup__button_disabled");
-//   openPopup(popupAddCard);
-// }
-
-// function closePopupProfile() {
-//   //Функция:закрыть попап Profile
-//   closePopup(popupEditProfile);
-// }
-
-// function closePopupAddCard() {
-//   //Функция:закрыть попап AddCard
-//   closePopup(popupAddCard);
-// }
-
-// function closePopupBigImg() {
-//   //Функция:закрыть попап BigImg
-//   closePopup(popupBigImg);
-// }
-
-const popupEditProfile = new PopupWithForm(".popup_type_edit-profile",handleProfileSubmit);
 const popupAddCard = new PopupWithForm(".popup_type_add-card",handleAddCard);
 
 function handleProfileSubmit(evt) {
   //Функция:присвоить значения input для профиля
   evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  jobProfile.textContent = jobInput.value;
-  
+  popupEditProfile.open();
+  const itIsUser = userInfo.getUserInfo();
+    nameInput.value = itIsUser.name;
+    jobInput.value = itIsUser.job;
 }
 popupEditProfile.setEventListeners();
 
@@ -76,13 +55,16 @@ function handleAddCard(evt) {
   cardContainer.prepend(cardItem.getElement());
   photoNameInput.value = "";
   imgLinkInput.value = "";
-  
+  popupAddCard.close();
 }
 popupAddCard.setEventListeners();
 
-buttonEditProfile.addEventListener("click", popupEditProfile.open);
+buttonEditProfile.addEventListener("click", handleProfileSubmit);
 buttonAddNewCard.addEventListener("click", popupAddCard.open);
 
+// popupFormEdit.addEventListener("submit",   ()=>{ });
+popupFormAdd.addEventListener("submit",  handleAddCard);
+//-------------------------------------------------------------------------------------------------------
 const popupBigImg = new PopupWithImage(".popup_type_image-big");
 
 function handleCardClick(name,link) {
@@ -121,15 +103,10 @@ cardsList.renderItems();
 //   cardContainer.append(ticket.getElement());
 // });
 
-
-
-
-
 // popupCloseButtonProfile.addEventListener("click", closePopupProfile);
 // popupCloseButtonAdd.addEventListener("click", closePopupAddCard);
 // popupCloseButtonBig.addEventListener("click", closePopupBigImg);
-popupFormEdit.addEventListener("submit", popupEditProfile.close);
-popupFormAdd.addEventListener("submit", popupAddCard.close);
+
 // popupProfileOverlay.addEventListener('click', () => {
 //   closePopup(popupEditProfile);
 // });
