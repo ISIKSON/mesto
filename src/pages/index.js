@@ -9,10 +9,6 @@ import {initialCards, validationConfig} from "../utils/constants.js";
 import {
   buttonEditProfile,
   buttonAddNewCard,
-  popupCloseButtonProfile,
-  popupCloseButtonAdd,
-  popupCloseButtonBig,
-  popupOverlay,
   nameInput,
   jobInput,
   photoNameInput,
@@ -20,53 +16,65 @@ import {
   nameProfile,
   jobProfile,
   cardContainer,
-  template,
   bigImgName,
   bigImg,
-  button,
   popupFormEdit,
   popupFormAdd} from "../utils/constants.js";
 
-const userInfo = new UserInfo({nameEl:nameProfile, jobEl:jobProfile});
+  const cardsList = new Section ({
+    items: initialCards, 
+    renderer:(data)=>{
+      const ticket =  createCard(data);
+      const cardElement =  ticket.getElement();
+      cardsList.addItem(cardElement);
+  }
+  },
+  cardContainer
+  );
+  
+  cardsList.renderItems();
 
+const userInfo = new UserInfo({nameElement:nameProfile, jobElement:jobProfile});
 const popupEditProfile = new PopupWithForm(".popup_type_edit-profile",
-()=>{
-  userInfo.setUserInfo(nameInput.value,jobInput.value);  
+(data)=>{
+  userInfo.setUserInfo(data.name,data.job);  
   popupEditProfile.close();
+  console.log(data);
 });
+
 
 const popupAddCard = new PopupWithForm(".popup_type_add-card",handleAddCard);
 
-function handleProfileSubmit(evt) {
+function openProfilePopup() {
   //Функция:присвоить значения input для профиля
-  evt.preventDefault();
+  // evt.preventDefault();
   popupEditProfile.open();
-  const itIsUser = userInfo.getUserInfo();
-    nameInput.value = itIsUser.name;
-    jobInput.value = itIsUser.job;
+  const user = userInfo.getUserInfo();
+    nameInput.value = user.name;
+    jobInput.value = user.job;
+    // console.log(user);
 }
 popupEditProfile.setEventListeners();
 
-function handleAddCard(evt) {
+
+function handleAddCard(data) {
   //handle-обработать какое то событие
-  evt.preventDefault();
-  const inputText = photoNameInput.value;
-  const inputLink = imgLinkInput.value;
-  const cardItem = createCard({ name: inputText, link: inputLink },'.template', handleCardClick);
-  cardContainer.prepend(cardItem.getElement());
+  const cardItem = createCard({ name: data["photo-name"], link: data["img-link"] });
+  cardsList.prependItem(cardItem.getElement());
   photoNameInput.value = "";
   imgLinkInput.value = "";
   popupAddCard.close();
 }
 popupAddCard.setEventListeners();
 
-buttonEditProfile.addEventListener("click", handleProfileSubmit);
+buttonEditProfile.addEventListener("click", openProfilePopup);
 buttonAddNewCard.addEventListener("click", popupAddCard.open);
 
 // popupFormEdit.addEventListener("submit",   ()=>{ });
-popupFormAdd.addEventListener("submit",  handleAddCard);
+// popupFormAdd.addEventListener("submit",  handleAddCard);
 //-------------------------------------------------------------------------------------------------------
 const popupBigImg = new PopupWithImage(".popup_type_image-big");
+popupBigImg.setEventListeners();
 
 function handleCardClick(name,link) {
   //Функция:открыть попап BigImg
@@ -75,7 +83,7 @@ function handleCardClick(name,link) {
   bigImg.src = link;
   bigImg.alt = name;
   popupBigImg.open(name,link);
-  popupBigImg.setEventListeners();
+  
  };
 
 function createCard(data) {
@@ -84,18 +92,7 @@ function createCard(data) {
   return card;
 };
 
-const cardsList = new Section ({
-  items: initialCards, 
-  renderer:(data)=>{
-    const ticket =  createCard(data);
-    const cardElement =  ticket.getElement();
-    cardsList.addItem(cardElement);
-}
-},
-cardContainer
-);
 
-cardsList.renderItems();
 
 // initialCards.forEach((data) => {
 //   //проходим по всем карточкам и создаём их в DOM

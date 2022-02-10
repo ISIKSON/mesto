@@ -20,4 +20,8 @@ export default class Section {
     addItem(element) {//принимает параметр element и вставляет его в контейнер методом append
         this._container.append(element);
     }
+
+    prependItem(element) {
+        this._container.prepend(element)
+    }
 }
