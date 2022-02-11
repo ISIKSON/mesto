@@ -65,10 +65,15 @@ function handleAddCard(data) {
   imgLinkInput.value = "";
   popupAddCard.close();
 }
+
+function openCardPopup() {
+  popupAddCard.open();
+  cardFormValidator.toggleButtonError();
+}
 popupAddCard.setEventListeners();
 
 buttonEditProfile.addEventListener("click", openProfilePopup);
-buttonAddNewCard.addEventListener("click", popupAddCard.open);
+buttonAddNewCard.addEventListener("click",openCardPopup);
 
 // popupFormEdit.addEventListener("submit",   ()=>{ });
 // popupFormAdd.addEventListener("submit",  handleAddCard);
@@ -122,3 +127,4 @@ const editFormValidator = new FormValidator(popupFormEdit,validationConfig);
 const cardFormValidator = new FormValidator(popupFormAdd,validationConfig);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+// cardFormValidator.toggleButtonError();

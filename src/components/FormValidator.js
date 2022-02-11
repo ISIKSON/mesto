@@ -28,7 +28,7 @@ class FormValidator {
         return this._inputList.some((input) => !input.validity.valid);//хотябы один input имеет ошибку(не валидный), из nodlist в массив с помощью Array
     }
 
-    _toggleButtonError = () => {//функция активности кнопки
+    toggleButtonError = () => {//функция активности кнопки
         // console.log(hasInvalidInput(inputs))    
         if (this._hasInvalidInput(this._inputList)) {//если хотябы один input имеет ошибку
             this._submitButton.classList.add(this._inactiveButtonClass);//добавляем кнопке класс
@@ -55,7 +55,7 @@ class FormValidator {
         this._inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkIfInputValid(input);//вызов функции проверки input на валидность
-                this._toggleButtonError();
+                this.toggleButtonError();
             });
         });
     }
