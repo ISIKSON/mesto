@@ -59,6 +59,7 @@ export const validationConfig = {//включает валидацию на пр
   export  const imgLinkInput = document.querySelector(".popup__input_type_img-link"); //input
   export  const nameProfile = document.querySelector(".profile__title");
   export  const jobProfile = document.querySelector(".profile__subtitle");
+  export  const avatarProfile = document.querySelector(".profile__avatar");
   export  const cardContainer = document.querySelector(".elements");
   export  const template = document.querySelector(".template");
   // export  const popupProfileOverlay = popupEditProfile.querySelector('.popup__overlay');
@@ -66,7 +67,7 @@ export const validationConfig = {//включает валидацию на пр
   // export  const popupPicOverlay = popupBigImg.querySelector('.popup__overlay');
   export  const bigImgName = document.querySelector(".popup__subtitle");
   export  const bigImg = document.querySelector(".popup__img");
-  export  const button = document.querySelector(".popup__button");
+  // export  const button = document.querySelector(".popup__button");
 
   
   export  const popupFormEdit = document.querySelector(".popup__form_type_edit-profile"); //form редактирование профиля

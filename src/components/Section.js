@@ -1,14 +1,13 @@
 export default class Section {
-    constructor({items, renderer}, containerSelector) {
-        this._renderedItems = items;
+    constructor( renderer, containerSelector) {
         this._renderer = renderer;
         this._container = containerSelector;//DOM-элемент, найденный по селектору containerSelector 
     }
 
-    renderItems() {//перебирает массив данных _renderedItems. Вызывает для каждого элемента массива метод addItem
+    renderItems(items) {//перебирает массив данных _renderedItems. Вызывает для каждого элемента массива метод addItem
         this.clear();
 
-        this._renderedItems.forEach(data => {
+        items.forEach(data => {
             this._renderer(data);
         })
     }
