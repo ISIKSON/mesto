@@ -65,7 +65,7 @@ Promise.all([api.getUser(),api.getCards()])
     userInfo.setUserInfo(userData);
   })
     .then(() => popupEditAvatar.close())
-    .catch(err=>`Аватар не изменился, ошибка ${err}`)
+    .catch(err=>console.log(`Аватар не изменился, ошибка ${err}`))
     .finally(()=>popupEditAvatar.loadingRender("Сохранить"))
   }
  });
@@ -82,7 +82,7 @@ const popupEditProfile = new PopupWithForm(".popup_type_edit-profile",{
   userInfo.setUserInfo(userData);
 })
 .then(() => popupEditProfile.close())
-.catch(err=>`Профель не отредактировался, ошибка ${err}`)
+.catch(err=>console.log(`Профель не отредактировался, ошибка ${err}`))
 .finally(()=>popupEditProfile.loadingRender("Сохранить"))
 }
 });
@@ -99,11 +99,9 @@ const popupAddCard = new PopupWithForm(".popup_type_add-card",{
   const cardItem = createCard(userData);
   cardsList.prependItem(cardItem.getElement());
 })
-.then(()=>  { 
-  photoNameInput.value = "";
-  imgLinkInput.value = ""; 
+.then(()=>  {  
   popupAddCard.close()})
-.catch(err=>`Ошибка добавления карточки ${err}`)
+.catch(err=>console.log(`Ошибка добавления карточки ${err}`))
 .finally(()=>popupAddCard.loadingRender("Создать"))
 }
 });
@@ -145,11 +143,9 @@ popupConfirmation.setEventListeners();
 //-------------------------------------------------------------------------------------------------------
 function handleCardClick(name,link) {
   //Функция:открыть попап BigImg
-
-  bigImgName.textContent = name;
-  bigImg.src = link;
-  bigImg.alt = name;
+  
   popupBigImg.open(name,link);
+  // console.log(popupBigImg.open(name,link));
   
  };
 
@@ -177,9 +173,9 @@ function createCard(data) {
       .then((likesData)=>{
         card.updateLike(likesData)
       })
-      .catch(err=>`Ошибка добавления лайка на карточку ${err}`)
+      .catch(err=>console.log(`Ошибка добавления лайка на карточку ${err}`))
     },
-    userInfo._id);
+    userInfo.getUserId());
   return card;
 };
 

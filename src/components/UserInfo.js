@@ -20,7 +20,7 @@ export default class UserInfo {
         this._id = _id;
     }
 
-    // setUserId(id) {
-    //     this._id= id;
-    // }
+    getUserId() {
+       return this._id;
+    }
 }

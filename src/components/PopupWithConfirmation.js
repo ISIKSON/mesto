@@ -4,7 +4,7 @@ export default class PopupWithConfirmation extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
         this._form = this._popup.querySelector(".popup__form");
-        this._popupElement=document.querySelector(".popup__button_type_delete-card");
+        this._submitButton=this._popup.querySelector(".popup__button_type_delete-card");
     }
 
     setSubmitAction(func) {
@@ -22,6 +22,6 @@ export default class PopupWithConfirmation extends Popup {
     }
 
     focus() {
-        this._popupElement.focus();
+        this._submitButton.focus();
     }
 }
