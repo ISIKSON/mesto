@@ -14,7 +14,5 @@ export default class PopupWithImage extends Popup {
     this._name.textContent = name;
     this._image.src = link;
     this._image.alt = name;
-    console.log(name);
-    console.log(link);
   }
 }
